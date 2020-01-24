@@ -1,3 +1,5 @@
+#needs update for y error (stats for dilutions in duplicate)
+
 # -*- coding: utf-8 -*-
 """
 Created on Tue Jan 14 13:36:36 2020
