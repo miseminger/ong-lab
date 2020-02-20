@@ -31,17 +31,14 @@ df_interp = df.interpolate(how='linear')
 plt.errorbar(x, viable_cells, yerr=y_err, fmt="-o")
 plt.scatter(np.array(df_interp.index), df_interp['viable_cells'], color='r')
 
-#these are ways of plotting the area assuming the data is evenly spaced. If it isn't: then what?
-#ratios of areas are the important thing, so it doesn't need to be super accurate
-#this dataset here is evenly spaced but there's a gap for the weekends
-
-area = trapz(df_interp['viable_cells'], dx=1)
+#get area under the curve
+area = trapz(df_interp['viable_cells'], dx=1) 
 print("numpy.trapz area =", area)
 
-area = simps(df_interp['viable_cells'], dx=1)
+area = simps(df_interp['viable_cells'], dx=1) #can also work with unevenly spaced data: can feed an x and y array
 print("scipy.integrate.simps area =", area)
 
-area = auc(np.array(df_interp.index), df_interp['viable_cells'])
+area = auc(np.array(df_interp.index), df_interp['viable_cells'])  #auc actually assumes monotonicity, which this data doesn't have
 print("sklearn.metrics.auc area =", area)
 
 '''
