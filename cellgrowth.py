@@ -233,7 +233,7 @@ if plot_NOVA == True:
     BUN = df['BUN'][start_row:end_row+1]
     pH = df['pH'][start_row:end_row+1]
 
-    #plot glucose and lactate iin g/l
+    #plot glucose and lactate in g/l
     fig = plt.figure(5)
     plt.scatter(hours, glucose, label='glucose', color='darkcyan')
     plt.scatter(hours, lactate, label='lactate', color='lightcoral')
