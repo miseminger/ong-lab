@@ -250,15 +250,32 @@ if plot_NOVA == True:
     plt.show()
     
     
-    #plot B1SP vs. integral cell concentration
+    #plot target protein concentration vs. integral cell concentration
     
     fig = plt.figure(8)
     
-    B1SP_nM = [4.513230047, 19.80373578, 55.46120443, 99.65672088, 133.5302892, 145.1529999, 161.8156372, 93.17130731]
+    prot_nM = [4.513230047, 19.80373578, 55.46120443, 99.65672088, 133.5302892, 145.1529999, 161.8156372, 93.17130731]
 
-    plt.errorbar(auc_arr[1:], B1SP_nM, yerr=0, fmt='-o', color='r')   
-    plt.ylabel('[B1SP] (nM)')
+    plt.errorbar(auc_arr[1:], prot_nM, yerr=0, fmt='-o', color='r')   
+    plt.ylabel('[prot] (nM)')
     plt.xlabel('integral viable cell concentration \n(millions of cells/ml*day)')
+    plt.grid()
+
+    figname = fignamebase + '_proteinvscells.png'
+    plt.savefig(figname, dpi=199)
+
+    plt.show()
+    
+    
+        #plot protein vs. time
+    
+    fig = plt.figure(9)
+    
+    prot_nM = [4.513230047, 19.80373578, 55.46120443, 99.65672088, 133.5302892, 145.1529999, 161.8156372, 93.17130731]
+
+    plt.errorbar(hours[1:], prot_nM, yerr=0, fmt='-o', color='k')   
+    plt.ylabel('[prot] (nM)')
+    plt.xlabel('days')
     plt.grid()
 
     figname = fignamebase + '_proteintimecourse.png'
@@ -267,18 +284,33 @@ if plot_NOVA == True:
     plt.show()
     
     
-        #plot B1SP vs. integral cell concentration
+        #plot protein in g/L vs. integral cell concentration
     
-    fig = plt.figure(9)
+    fig = plt.figure(10)
     
-    B1SP_nM = [4.513230047, 19.80373578, 55.46120443, 99.65672088, 133.5302892, 145.1529999, 161.8156372, 93.17130731]
+    prot_g = np.array(prot_nM) * 0.168
+    
+    plt.errorbar(auc_arr[1:], prot_g, yerr=0, fmt='-o', color='r')   
+    plt.ylabel('[prot] (mg/L)')
+    plt.xlabel('integral viable cell concentration \n(millions of cells/ml*day)')
+    plt.grid()
 
-    plt.errorbar(hours[1:], B1SP_nM, yerr=0, fmt='-o', color='k')   
-    plt.ylabel('[B1SP] (nM)')
+    figname = fignamebase + '_proteinvscells_mg.png'
+    plt.savefig(figname, dpi=199)
+
+    plt.show()
+    
+    
+        #plot protein in g/L vs. time
+    
+    fig = plt.figure(11)
+    
+    plt.errorbar(hours[1:], prot_g, yerr=0, fmt='-o', color='k')   
+    plt.ylabel('[prot] (mg/L)')
     plt.xlabel('days')
     plt.grid()
 
-    figname = fignamebase + '_proteintimecourse.png'
+    figname = fignamebase + '_proteintimecourse_mg.png'
     plt.savefig(figname, dpi=199)
 
     plt.show()
